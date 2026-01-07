@@ -1,0 +1,21 @@
+
+
+
+
+A template in Flask is basically an HTML file that Flask can send to the browser. 
+
+In the template folder: 
+1. We have HTML files. 
+2. Each are made for the pages we want. 
+3. Let's say we have a loggin page
+4. We need a login html class, with its JS and CSS stuff. 
+
+5. So since everytime we need to crete these files for multiply files, we create a base.html file. 
+
+6. base.html --> ACTS as a teamplate. 
+
+
+
+
+
+

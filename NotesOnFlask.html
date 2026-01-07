@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Flask's notes </title>
+    </head>
+    <body>
+        <h2>Flask Project Structure – Summary</h2>
+
+        <p>
+        This Flask project follows the <strong>Application Factory Pattern</strong> and uses
+        <strong>Blueprints</strong> to keep the code organized, modular, and scalable.
+        Instead of putting everything in one file, each part of the application
+        has a clear responsibility.
+        </p>
+
+        <hr>
+
+        <h3>Project Structure</h3>
+
+        <ul>
+        <li><strong>main.py</strong> – Entry point of the application. It creates and runs the Flask app.</li>
+        <li><strong>website/</strong> – The main application package.</li>
+        <ul>
+            <li><strong>__init__.py</strong> – Creates the Flask app and registers Blueprints.</li>
+            <li><strong>views.py</strong> – Contains routes for general pages (e.g., home page).</li>
+            <li><strong>auth.py</strong> – Contains routes related to authentication (login, signup, logout).</li>
+            <li><strong>models.py</strong> – Defines database models (used later).</li>
+            <li><strong>templates/</strong> – Holds HTML files rendered by Flask.</li>
+            <li><strong>static/</strong> – Holds CSS, JavaScript, and images.</li>
+        </ul>
+        </ul>
+
+        <hr>
+
+        <h3>Application Factory Pattern</h3>
+
+        <p>
+        The Flask app is created inside a function called <code>create_app()</code>.
+        This allows the application to be configured and assembled in one place,
+        making it easier to scale, test, and manage as the project grows.
+        </p>
+
+        <p>
+        The <code>SECRET_KEY</code> is set inside this function to enable sessions,
+        cookies, and authentication features.
+        </p>
+
+        <hr>
+
+        <h3>Blueprints</h3>
+
+        <p>
+        Blueprints allow routes to be grouped by functionality.
+        Each Blueprint defines routes but does not create the Flask app itself.
+        </p>
+
+        <ul>
+        <li><strong>views Blueprint</strong> – Handles general pages such as the home page.</li>
+        <li><strong>auth Blueprint</strong> – Handles authentication-related pages.</li>
+        </ul>
+
+        <p>
+        Blueprints are registered inside <code>create_app()</code>, which connects all routes to the main app.
+        </p>
+
+        <hr>
+
+        <h3>Request Flow</h3>
+
+        <ol>
+        <li>The application starts in <code>main.py</code>.</li>
+        <li><code>create_app()</code> creates the Flask app.</li>
+        <li>Blueprints are registered.</li>
+        <li>A user visits a URL.</li>
+        <li>Flask finds the matching route inside a Blueprint.</li>
+        <li>The route function runs and returns a response.</li>
+        </ol>
+
+        <hr>
+
+        <h3>Key Idea</h3>
+
+        <p>
+        This structure separates concerns, keeps files small and readable,
+        and prepares the application for future features such as databases,
+        authentication, and larger codebases.
+        </p>
+    </body>
+</html>

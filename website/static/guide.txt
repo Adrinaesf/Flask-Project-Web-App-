@@ -1,0 +1,8 @@
+This file is mainly used to store files that are static
+Like CSS or JS, images, and more. 
+And we can load them to our HTML:
+<scritps> 
+    type="text/javascript"
+    src="{{ url_for('static', filename='index.js')}}"
+</script>
+url_for: will find the url for that static file we are looking for. 
