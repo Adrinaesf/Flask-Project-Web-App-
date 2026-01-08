@@ -1,0 +1,35 @@
+
+.container_header {
+    display: flex;
+    background-color: grey;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    height: 60px;
+    justify-content: start;
+    align-items: center;
+    box-shadow: 1px 1px 5px rgb(108, 107, 107);
+
+}
+.welc_txt {
+    margin-left: 10px;
+    margin-right: 20px;
+    font-size: 20px;
+}
+.login {
+    margin-left: 5px;
+}
+button {
+    margin-right: 15px;
+    height: 30px;
+    background-color: rgb(215, 213, 213);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 1px 5px rgb(67, 67, 67);
+    opacity: 0.9;
+    transition: all 0.15s;
+}
+button:hover {
+    box-shadow: 2px 1px 5px rgb(17, 16, 16);
+}
