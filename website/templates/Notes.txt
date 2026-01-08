@@ -1,7 +1,4 @@
 
-
-
-
 A template in Flask is basically an HTML file that Flask can send to the browser. 
 
 In the template folder: 
@@ -15,7 +12,122 @@ In the template folder:
 6. base.html --> ACTS as a teamplate. 
 
 
+------------------------------------------------------
+How to make templates?
+{{ ... }} → Output something
+EX:
+Used to display values.
+
+{{ variable }}
+{{ url_for('static', filename='css/style.css') }}
+- - - - - - - - - -
+{% ... %} → Do something
+EX:
+{% extends "base.html" %}
+{% block content %}
+{% endblock %}
+
+------------------------------------------------------
+NOTE:
+The file that uses the base, always has this as the first line of code in their file:
+{% extends "base.html" %}
+
+HERE's an Example:
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}My Site{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+
+  <body>
+    <header>
+      <h1>My Website</h1>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>
+ 
+
+THE MINIMAL home.html
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <p>Welcome to the home page.</p>
+{% endblock %}
 
 
+In the function of that html page (ex, home()) we do:
+return render_template("home.html")
+-------------------------
+Linking CSS/JS to the base.html vs home.html:
+base.html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}My Site{% endblock %}</title>
 
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+
+  <body>
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>
+Now every page that extends base.html automatically gets CSS + JS.
+------------------------------------------------------
+What If ONLY One Page Needs JS or CSS?
+
+You add another block.
+base.html
+<head>
+  <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}">
+
+  {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+  {% block content %}{% endblock %}
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block extra_js %}{% endblock %}
+
+</body>
+
+AND
+home.html
+{% extends "base.html" %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+  <button id="myBtn">Click</button>
+{% endblock %}
+------------------------------------------------------
+
+SUMMARY:
+Final Mental Model (Keep This)
+1. Templates = HTML structure
+2. Static files = optional assets
+3. Load assets only when needed
+4. Blocks let you choose per page
 
