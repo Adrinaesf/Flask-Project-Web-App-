@@ -8,7 +8,9 @@
         <!-- This is a block and it is used for templates: -->
         
 
-        <title>{% block title %} Home {% endblock %}</title>
+        <title>
+            {% block title %}Default Title{% endblock %}
+        </title>
         <link rel="stylesheet"
           href="{{ url_for('static', filename='css/base_style.css') }}">
 
@@ -16,16 +18,22 @@
     
     <body>
         <!-- Creating a header --> 
+
         <div class="container_header"> 
+              
             <p class="welc_txt"> Welcome </p>
-            <button class="login">Login</button>
-            <button class="signUp">Sign Up</button>
-            <button class="logout">Logout</button>
-            <button class="home">Home</button>
+            <a href="{{ url_for('views.home') }}" class="nav-btn">Home</a>
+            <a href="{{ url_for('auth.login') }}" class="nav-btn">Login</a>
+            <a href="{{ url_for('auth.sign_up') }}" class="nav-btn">Sign Up</a>
+            <a href="{{ url_for('auth.logout') }}" class="nav-btn">Logout</a>
         </div>
 
-        
+        <div class="container" style="padding-top: 70px;" >
+            {% block content %}
+            {% endblock %}
+        </div>
 
+    
         <!-- Loading from static, a javascript file -->
         <script 
             type="text/javascript"

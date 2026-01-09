@@ -1,35 +1,48 @@
-
+/* Header container */
 .container_header {
     display: flex;
-    background-color: grey;
-    position: fixed;
-    top: 0px;
-    right: 0px;
-    left: 0px;
-    height: 60px;
-    justify-content: start;
     align-items: center;
-    box-shadow: 1px 1px 5px rgb(108, 107, 107);
+    justify-content: space-between; /* spreads welcome text and buttons */
+    background-color: #4a4a4a; /* darker gray */
+    padding: 0 20px; /* horizontal padding */
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
 
-}
+/* Welcome text */
 .welc_txt {
-    margin-left: 10px;
-    margin-right: 20px;
     font-size: 20px;
+    color: white;
+    font-weight: 500;
 }
-.login {
-    margin-left: 5px;
-}
-button {
-    margin-right: 15px;
-    height: 30px;
-    background-color: rgb(215, 213, 213);
-    border: none;
+
+/* Nav buttons */
+.nav-btn {
+    margin-left: 10px;
+    padding: 6px 12px;
+    background-color: #6c63ff; /* nicer accent color */
+    color: white;
+    text-decoration: none;
     border-radius: 5px;
-    box-shadow: 2px 1px 5px rgb(67, 67, 67);
-    opacity: 0.9;
-    transition: all 0.15s;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    font-size: 14px;
 }
-button:hover {
-    box-shadow: 2px 1px 5px rgb(17, 16, 16);
+
+/* Hover effect */
+.nav-btn:hover {
+    background-color: #5750d4;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Optional: space buttons to the right */
+.nav-btn-container {
+    display: flex;
+    align-items: center;
 }
