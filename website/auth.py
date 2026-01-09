@@ -12,6 +12,8 @@ def login():
 def logout():
     return render_template("home.html")
 
-@auth.route('/sign-up')
+@auth.route('/sign-up', methods=["GET", "POST"])
 def sign_up():
-    return render_template("signUp.html")
+    return render_template("sign_up.html")
+
+

@@ -10,4 +10,3 @@ if __name__ == '__main__':
     # And debug and make changes as if we # make any change.
     print("Starting Flask app...") 
     app.run(debug=True)
-
