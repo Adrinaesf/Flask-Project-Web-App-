@@ -9,8 +9,33 @@ Purpose:
         Ex: Note: Text, date, and more
     
     4. How to asccosiate different notes data to different users?ie. what if a user have multiply notes, how should they connect with one another.
-        - Main Concept: Foreighn Key vs Primary Key
-        -  
+        - Main Concept: Foreign Key vs Primary Key
+        - Foreign key: A column in your database that  references a column of another database. 
+        So in this instance, for every: 
+        - single note: store the ID
+    
+    5. We also want that all users to find all of their notes. 
+    This is example of one to many
+        - we have one to one
+        - we have many to one
+        - for more info read ducumentation. 
+    Ex: 
+    User_table:
+        id	        email
+        1	        a@x.com
+
+    Note_table: 
+        id	        text	    user_id
+        5	        "hi"	       1
+        6	        "hey"	       1
+
+    User class: 
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    
+    Notes class:
+    notes = db.relationship('Note') 
+    --> This gives all the notes (id = 5,6) to user_id=1
+
 """
 
 
@@ -32,7 +57,9 @@ class Note(db.Model):
 
     # -----------------------------------------
     # Connecting the data(Note) and the User
-
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    # This user_id, will always save the id of the user
+    # Inputs: we need db.Integer + db.ForeignKey('user.field'), which in this case it is the id. 
 
 
 class User(db.Model, db.UserMixin):
@@ -42,6 +69,7 @@ class User(db.Model, db.UserMixin):
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     firstName = db.Column(db.String(150))
+    notes = db.relationship('Note')
 
 
 
