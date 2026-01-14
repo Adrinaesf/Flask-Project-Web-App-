@@ -28,6 +28,17 @@
             <a href="{{ url_for('auth.logout') }}" class="nav-btn">Logout</a>
         </div>
 
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert {{ category }}">
+                    {{ message }}
+                <button class="close-btn">&times;</button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        
         <div class="container" style="padding-top: 70px;" >
             {% block content %}
             {% endblock %}

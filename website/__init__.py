@@ -1,18 +1,20 @@
 # This helps to make the website as a package to import. 
 
-
-
-
 # First thing to do: Create an app with flask:
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from os import path
+from flask_login import LoginManager
+
+db = SQLAlchemy()
+DB_NAME = "database.db"
+
 def creat_app():
     # Initialuze app:
-    app = Flask(__name__) 
-    # Required for the privacy
-    app.config['SECRET_KEY'] = 'cahvdhvaoidh lahdvilh'
-
-
-    ## Regestering the routs: 
+    app = Flask(__name__)
+    app.config['SECRET_KEY'] = 'hjshjhdjah kjshkjdhjs'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    db.init_app(app)
     
     from .views import views
     from .auth import auth

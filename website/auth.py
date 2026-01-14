@@ -16,6 +16,7 @@ def logout():
 
 @auth.route('/sign-up', methods=["GET", "POST"])
 def sign_up():
+    flash("DEBUG: route loaded", "success")
     if request.method == 'POST':
         email = request.form.get('email')
         firstName = request.form.get('firstName')
@@ -23,17 +24,17 @@ def sign_up():
         password2 = request.form.get('password2')
     
     # Now we wanna check if the information is valid or not:
-    if len(email) < 4:
-        flash('Email must be greater than 4 characters.', category='error')
-    elif len(firstName) < 2:
-        flash('First name must be greter than 1 characters.', category='error')
-    elif len(password1) != len(password2):
-        flash('Passwords don\'t match', category='error')
-    elif len(password1) < 7: 
-        flash('Password should be at least 7 characters', category='error')
-        # The data is right and we can enter it to our database. 
-    else: 
-        flash('Accounts created!', category='success')
+        if len(email) < 4:
+            flash('Email must be greater than 4 characters.', category='error')
+        elif len(firstName) < 2:
+            flash('First name must be greter than 1 characters.', category='error')
+        elif len(password1) != len(password2):
+            flash('Passwords don\'t match', category='error')
+        elif len(password1) < 7: 
+            flash('Password should be at least 7 characters', category='error')
+            # The data is right and we can enter it to our database. 
+        else: 
+            flash('Accounts created!', category='success')
 
 
     return render_template("sign_up.html")
