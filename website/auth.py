@@ -1,4 +1,8 @@
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, redirect, url_for
+from .models import User
+from . import db
+from werkzeug.security import generate_password_hash
+
 # This has so much routs here, has URL, 
 
 auth = Blueprint('auth', __name__) # Recc: call the same name
@@ -6,13 +10,16 @@ auth = Blueprint('auth', __name__) # Recc: call the same name
 # We now create more routs: login, logout, sign up:
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    data = request.form
-    print(data)
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        
+
     return render_template("login.html")
 
 @auth.route('/logout')
 def logout():
-    return render_template("home.html")
+    return redirect(url_for('views.home'))
 
 @auth.route('/sign-up', methods=["GET", "POST"])
 def sign_up():
@@ -34,8 +41,20 @@ def sign_up():
             flash('Password should be at least 7 characters', category='error')
             # The data is right and we can enter it to our database. 
         else: 
+            # Making a user:
+            new_user = User(
+                email=email,
+                firstName=firstName,
+                password=generate_password_hash(password1, method='pbkdf2:sha256')
+            )
+            db.session.add(new_user)
+            db.session.commit()
+
+
             flash('Accounts created!', category='success')
 
+            # Now redirect to the home_page
+            return redirect(url_for('views.home'))
 
     return render_template("sign_up.html")
 

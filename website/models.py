@@ -41,7 +41,7 @@ Purpose:
 
 from . import db
 ## Give objects for flask login:
-from flask_login import userMixin
+from flask_login import UserMixin
 from sqlalchemy.sql import func
 
 
@@ -62,7 +62,7 @@ class Note(db.Model):
     # Inputs: we need db.Integer + db.ForeignKey('user.field'), which in this case it is the id. 
 
 
-class User(db.Model, db.UserMixin):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
 
     # email length <= 150 char long + unique 
