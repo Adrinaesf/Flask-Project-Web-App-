@@ -134,4 +134,75 @@ button.submit-btn:hover {
 
 
 
-
+/* Page title */
+.page-title {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  /* Notes list */
+  .notes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Single note */
+  .note-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Note text */
+  .note-text {
+    flex: 1;
+  }
+  
+  /* Delete button */
+  .note-delete {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #888;
+  }
+  
+  .note-delete:hover {
+    color: #e63946;
+  }
+  
+  /* Form */
+  .note-form {
+    margin-top: 1rem;
+  }
+  
+  /* Textarea */
+  .note-input {
+    width: 100%;
+    min-height: 80px;
+    padding: 0.5rem;
+    resize: vertical;
+  }
+  
+  /* Submit button wrapper */
+  .note-submit-wrapper {
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  
+  /* Submit button */
+  .note-submit {
+    padding: 0.5rem 1.2rem;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .note-submit:hover {
+    background-color: #0056b3;
+  }

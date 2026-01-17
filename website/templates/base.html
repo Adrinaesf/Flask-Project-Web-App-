@@ -22,10 +22,15 @@
         <div class="container_header"> 
               
             <p class="welc_txt"> Welcome </p>
+
+            {% if user.is_authenticated %}
             <a href="{{ url_for('views.home') }}" class="nav-btn">Home</a>
+            <a href="{{ url_for('auth.logout') }}" class="nav-btn">Logout</a>
+            {% else %}
             <a href="{{ url_for('auth.login') }}" class="nav-btn">Login</a>
             <a href="{{ url_for('auth.sign_up') }}" class="nav-btn">Sign Up</a>
-            <a href="{{ url_for('auth.logout') }}" class="nav-btn">Logout</a>
+            {% endif %}
+
         </div>
 
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -38,7 +43,7 @@
             {% endfor %}
         {% endif %}
         {% endwith %}
-        
+
         <div class="container" style="padding-top: 70px;" >
             {% block content %}
             {% endblock %}
