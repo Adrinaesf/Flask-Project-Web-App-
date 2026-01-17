@@ -1,9 +1,12 @@
 # We will crete teh first routs, like login page, home-page, 
 
 # First we start with flask:
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, flash, redirect, url_for
 # This has so much routs here, has URL, 
 from flask_login import login_required, current_user
+from .models import User, Note
+from . import db
+
 
 views = Blueprint('views', __name__) # Recc: call the same name
 
@@ -29,7 +32,7 @@ def home():
         if len(note) < 1:
             flash('Note is too short!', category='error') 
         else:
-            new_note = Note(data=note, user_id=current_user.id)  #providing the schema for the note 
+            new_note = Note(text=note, user_id=current_user.id)  #providing the schema for the note 
             db.session.add(new_note) #adding the note to the database 
             db.session.commit()
             flash('Note added!', category='success')
